@@ -1,4 +1,11 @@
 /*
+
+jOffset
+-------
+
+Version 1.1
+
+
 Copyright (C) 2013 Milosz Falinski
 Twitter: @milosz_is
 Web: http://milosz.is
@@ -10,6 +17,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+
 
 (function($) {
     $.fn.extend({
@@ -26,7 +34,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             };
 
             // if user defined options, use them instead
-            var options = $.extend(defaults, options);
+            options = $.extend(defaults, options);
 
             // fire the functon for all matched elements
             return this.each(function () {
@@ -52,10 +60,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                      .css({
                         // (image width - frame width) / 2
                         'left': '-' + (image.width() - eltWidth) / 2 + 'px',
-                        'top': '-' + (image.height() - eltHeight) / 2 + 'px',
+                        'top': '-' + (image.height() - eltHeight) / 2 + 'px'
+                    });
+                if (o.snapToCenter) {
+                    image.css({
                         'transition-property': 'left, top',
                         'transition-duration': '0.25s'
                     });
+                }
 
                 if (o.diag) {
                     console.log('Image - left, top: ',
@@ -88,11 +100,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
                     // after all's defined do the actual position.
                     image.css({
-                        // -(absolute_distance_from_center/ (100/15 = makes
-                        // it 15% = brings it down to 1:1 scale with positions))
+                        // -(absolute_distance_from_center/ (100/offset -
+                        // brings it down to 1:1 scale with positions))
                         // finally account for initial offset and add a unit.
-                        'left': -(mouseDistX/6.77) - o.offsetX + "%",
-                        'top':  -(mouseDistY/6.77) - o.offsetY + "%"
+                        'left': -(mouseDistX/(100/o.offsetX)) - o.offsetX + "%",
+                        'top':  -(mouseDistY/(100/o.offsetY)) - o.offsetY + "%"
                     });
                 }
 
@@ -102,7 +114,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     }
                     setTimeout(function() {
                         image.css({
-                            'transition-property': 'none'
+                            'transition-property': 'none',
+                            'transition-duration': '0'
                         });
                     }, 200);
 
@@ -117,7 +130,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         left: '-' + (image.width() - eltWidth) / 2 + 'px',
                         top: '-' + (image.height() - eltHeight) / 2 + 'px'
                     }, 200, 'swing').css({
-                        'transition-property': 'left, top'
+                        'transition-property': 'left, top',
+                        'transition-duration': '0.25s'
                     });
                 }
 
