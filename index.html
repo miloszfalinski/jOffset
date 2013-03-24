@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>jOffset Demo</title>
+    <style type="text/css">
+        *{
+            box-sizing:border;
+        }
+        .hover{
+            width:400px;
+            height:400px;
+            overflow: hidden;
+            position: relative;
+        }
+        .img_overlay{
+            position: absolute;
+            padding:20px;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        img{
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <figure class="hover">
+        <section class="img_overlay">
+            <h2>
+                <a href="http://androidwallpape.rs/content/02-wallpapers/48-diamond-water/diamond_water_by_ilva_r-d2ekh3s.jpg">
+                Diamond water
+                </a>
+            </h2>
+            <span class="author">by
+                <a href="http://ilva-r.deviantart.com/art/Diamond-water-145402264">
+                    ilva-R
+                </a>
+            </span>
+        </section>
+        <img src="http://androidwallpape.rs/thumbs/856810b95102aa4930f06fdb0d122a2c.800.800.0.1.80.jpg" />
+    </figure>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="jquery.joffset.js"></script>
+<script type="text/javascript">
+    $(".hover").jOffset();
+</script>
+</body>
+</html>
