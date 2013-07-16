@@ -7,7 +7,7 @@ Version 1.1
 
 
 Copyright (C) 2013 Milosz Falinski
-Twitter: @milosz_is
+Twitter: @miloszfalinski
 Web: http://milosz.is
 Github page: https://github.com/miloszfalinski/jOffset
 
