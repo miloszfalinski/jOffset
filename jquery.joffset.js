@@ -52,9 +52,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         eltWidth, centerX, centerY);
                 }
 
+                // select direct descendant only, skips images in overlay
                 // center and set image size to 100% + 2*offset
-                // if o.resizeImage is true
-                var image = $this.find('img');
+                var image = $this.find('> img');
                 image.width((100 + 2*o.offsetX + '%'))
                      .height((100 + 2*o.offsetY + '%'))
                      .css({
